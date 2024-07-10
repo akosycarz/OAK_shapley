@@ -1,4 +1,22 @@
-# Orthogonal Additive Gaussian Processes
+# my experimetn name
+
+# setup
+python -m venv .venv_oak
+source .venv_oak/bin/activate
+pip install -r requirements_oak.txt
+
+
+
+
+
+
+
+
+
+
+
+
+# Orthogonal Additive Gaussian Processes (FORKED)
 
 
 This is the code repo for the paper Additive Gaussian Processes Revisited (https://arxiv.org/pdf/2206.09861.pdf)
