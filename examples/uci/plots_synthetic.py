@@ -4,7 +4,7 @@ import os
 import numpy as np
 
 def plot_synthetic(num, data_set):
-    base_save_dir = "/root/orthogonal-additive-gaussian-processes/synthetic_models"
+    base_save_dir = "/root/OAK_shapley/synthetic_models"
     save_dir = os.path.join(base_save_dir, f"expression_{num+1}")
 
     svr_rfe_iterations = torch.load(os.path.join(save_dir, "svr_rfe_iter.pt"))
