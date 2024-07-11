@@ -3,8 +3,7 @@ import pandas as pd
 from sklearn.datasets import load_diabetes, fetch_openml, fetch_california_housing
 import sys
 import os
-
-sys.path.append("/root/OAK_shapley")
+sys.path.append("/root/orthogonal-additive-gaussian-processes")
 
 # Load datasets with parser set to 'auto' to avoid warnings
 datasets = {
@@ -15,7 +14,7 @@ datasets = {
     "wine_quality": fetch_openml(name="wine-quality-red", as_frame=False, parser='auto')
 }
 # Base directory containing the predictions
-base_dir = "/root/OAK_shapley"
+base_dir = "/root/orthogonal-additive-gaussian-processes"
 
 # Directory to save plots
 plots_dir = os.path.join(base_dir, "real_data_plots")
@@ -25,9 +24,11 @@ for dataset_name in datasets.keys():
     try:
         # Load predictions from the CSV files
         predictions_oak_df = pd.read_csv(f"/root/orthogonal-additive-gaussian-processes/real_data_oak/predictions_oak_{dataset_name}.csv")
-        predictions_kernel_df = pd.read_csv(f"//root/OAK_shapley/real_data_shap/predictions_KernelExplainer_RandomForest_{dataset_name}.csv")
-        predictions_mlp_df = pd.read_csv(f"/root/OAK_shapley/real_data_shap/predictions_MLPRegressort_{dataset_name}.csv")
-        predictions_additive_df = pd.read_csv(f"/root/OAK_shapley/real_data_shap/predictions_AdditiveExplainer_{dataset_name}.csv")
+        predictions_kernel_df = pd.read_csv(f"/root/orthogonal-additive-gaussian-processes/real_data_shap/predictions_KernelExplainer_RandomForest_{dataset_name}.csv")
+        predictions_mlp_df = pd.read_csv(f"/root/orthogonal-additive-gaussian-processes/real_data_shap/predictions_MLPRegressort_{dataset_name}.csv")
+        predictions_additive_df = pd.read_csv(f"/root/orthogonal-additive-gaussian-processes/real_data_shap/predictions_AdditiveExplainer_{dataset_name}.csv")
+        predictions_linearexpleiner_df = pd.read_csv(f"/root/orthogonal-additive-gaussian-processes/real_data_shap/predictions_LinearExplainer_{dataset_name}.csv")
+        predictions_tree_df = pd.read_csv(f"/root/orthogonal-additive-gaussian-processes/real_data_shap/predictions_TreeExplainer_{dataset_name}.csv")
     except FileNotFoundError as e:
         print(f"Error: {e}. Ensure that the prediction CSV files for {dataset_name} are available.")
         continue  # Skip this iteration if any file is missing
@@ -38,13 +39,17 @@ for dataset_name in datasets.keys():
     predictions_kernel = predictions_kernel_df["Predictions"]
     predictions_mlp = predictions_mlp_df["Predictions"]
     predictions_additive = predictions_additive_df["Predictions"]
+    predictions_linear = predictions_linearexpleiner_df["Predictions"]
+    predictions_tree = predictions_tree_df["Predictions"]
 
     # Plotting the predictions
     plt.figure(figsize=(10, 6))
-    plt.plot(iterations, predictions_oak, marker='o', linestyle='-', label='OAK with Shapley values Predictions')
-    plt.plot(iterations, predictions_kernel[:len(iterations)], marker='x', linestyle='--', label='Random Forest  with KernelExplainer Predictions')
-    plt.plot(iterations, predictions_mlp[:len(iterations)], marker='s', linestyle='-.', label='MLPRegressor with KernelExplainer Predictions')
-    plt.plot(iterations, predictions_additive[:len(iterations)], marker='^', linestyle='-', label='Linear model with AdditiveExplainer Predictions')
+    plt.plot(iterations, predictions_oak, marker='o', linestyle='-', label='OAK iwth Shapley values Predictions')
+    plt.plot(iterations, predictions_kernel[:len(iterations)], marker='x', linestyle='--', label='Random Forest withKernel ex. Predictions')
+    plt.plot(iterations, predictions_mlp[:len(iterations)], marker='s', linestyle='-.', label='MLPRegressor with Kernel ex.Predictions')
+    plt.plot(iterations, predictions_additive[:len(iterations)], marker='^', linestyle='-', label='Linear model Additive ex. Predictions')
+    plt.plot(iterations, predictions_linear[:len(iterations)], marker='^', linestyle='-', label='Linear model Linear ex. Predictions')
+    plt.plot(iterations, predictions_tree[:len(iterations)], marker='^', linestyle='-', label='Tree model with Tree ex. Predictions')
 
     plt.xlabel('Iteration')
     plt.ylabel('Predictions')
