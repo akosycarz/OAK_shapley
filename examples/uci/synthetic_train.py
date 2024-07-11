@@ -1,5 +1,5 @@
 import sys
-sys.path.append("/root/orthogonal-additive-gaussian-processes")
+sys.path.append("/root/OAK_shapley")
 
 # Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 # SPDX-License-Identifier: Apache-2.0

@@ -1,5 +1,5 @@
 import sys
-sys.path.append("/root/orthogonal-additive-gaussian-processes")
+sys.path.append("/root/OAK_shapley")
 import time
 import tensorflow as tf
 import matplotlib.pyplot as plt
