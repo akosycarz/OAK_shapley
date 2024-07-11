@@ -40,10 +40,10 @@ for dataset_name in datasets.keys():
 
     # Plotting the predictions
     plt.figure(figsize=(10, 6))
-    plt.plot(iterations, predictions_oak, marker='o', linestyle='-', label='OAK Predictions')
-    plt.plot(iterations, predictions_kernel[:len(iterations)], marker='x', linestyle='--', label='KernelExplainer Random Forest Predictions')
-    plt.plot(iterations, predictions_mlp[:len(iterations)], marker='s', linestyle='-.', label='MLPRegressor Predictions')
-    plt.plot(iterations, predictions_additive[:len(iterations)], marker='^', linestyle='-', label='AdditiveExplainer Predictions')
+    plt.plot(iterations, predictions_oak, marker='o', linestyle='-', label='OAK with Shapley values Predictions')
+    plt.plot(iterations, predictions_kernel[:len(iterations)], marker='x', linestyle='--', label='Random Forest  with KernelExplainer Predictions')
+    plt.plot(iterations, predictions_mlp[:len(iterations)], marker='s', linestyle='-.', label='MLPRegressor with KernelExplainer Predictions')
+    plt.plot(iterations, predictions_additive[:len(iterations)], marker='^', linestyle='-', label='Linear model with AdditiveExplainer Predictions')
 
     plt.xlabel('Iteration')
     plt.ylabel('Predictions')
