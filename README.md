@@ -1,16 +1,34 @@
-# my experimetn name
+# my experiment for (Exact Shapley value for AGP)
 
 # setup
+for running code with OAK
+
 python -m venv .venv_oak
 source .venv_oak/bin/activate
 pip install -r requirements_oak.txt
 
 
+for running code with SHAP
+
+python -m venv .venv_shap
+source .venv_shap/bin/activate
+pip install -r requirements_shap.txt
 
 
+# Experiment on synthetic data
+- use .venv_oak
+- run skripts:
+	- synthetic_train.py
+	- plots_synthetic.py
 
-
-
+# Real data experiment
+- use .venv_oak
+	- run skript:
+		- real_data_oak_experiment.py
+- use .venv_shap
+	= run skripts:
+		- real_data_shape_experiment.py
+		- plots_real_data.py
 
 
 
