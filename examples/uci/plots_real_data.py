@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.datasets import load_diabetes, fetch_openml, fetch_california_housing
 import sys
 import os
-sys.path.append("/root/orthogonal-additive-gaussian-processes")
+# sys.path.append("/root/orthogonal-additive-gaussian-processes")
 
 # Load datasets with parser set to 'auto' to avoid warnings
 datasets = {
@@ -14,7 +14,7 @@ datasets = {
     "wine_quality": fetch_openml(name="wine-quality-red", as_frame=False, parser='auto')
 }
 # Base directory containing the predictions
-base_dir = "/root/orthogonal-additive-gaussian-processes"
+base_dir = "/root/OAK_shapley"
 
 # Directory to save plots
 plots_dir = os.path.join(base_dir, "real_data_plots")
